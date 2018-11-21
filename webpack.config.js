@@ -13,9 +13,12 @@
     module: {
       rules: [{
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: /src/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader',
+          options: {
+            presets: ['env', 'flow']
+          }
         }
       }]
     }
