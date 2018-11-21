@@ -1,25 +1,29 @@
   const path = require('path')
 
-  module.exports = {
-    entry: {
-      entry: __dirname + '/src/index.js'
-    },
-    output: {
-      filename: '[name].bundle.js'
-    },
-    optimization: {
-      minimize: true
-    },
-    module: {
-      rules: [{
-        test: /\.js$/,
-        include: /src/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env', 'flow']
+  module.exports = (env, options) => {
+    return {
+      entry: {
+        entry: __dirname + '/src/index.js'
+      },
+      output: {
+        path: __dirname + '/dist',
+        publicPath: '/',
+        filename: '[name].bundle.js'
+      },
+      optimization: {
+        minimize: options.mode == 'production'
+      },
+      resolve: {
+        extensions: ['*', '.js', '.jsx']
+      },
+      module: {
+        rules: [{
+          test: /\.js$/,
+          exclude: /(node_modules|dist|lib)/,
+          use: {
+            loader: 'babel-loader'
           }
-        }
-      }]
+        }]
+      }
     }
   }

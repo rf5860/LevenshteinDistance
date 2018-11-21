@@ -4,7 +4,7 @@
   "description": "Javascript implementation of the Wagner-Fischer Algorithm",
   "main": "index.js",
   "scripts": {
-    "develop": "webpack --mode development --watch",
+    "develop": "webpack --mode development",
     "build": "webpack --mode production"
   },
   "author": "rf5860",
