@@ -47,10 +47,10 @@ function sortExtenionCards(): void {
     let extensionManagerContainer = document.getElementsByTagName('extensions-manager')[0].shadowRoot
     let shortcutContainerRoot = extensionManagerContainer.querySelector('extensions-keyboard-shortcuts').shadowRoot
     let shortcutContainer = shortcutContainerRoot.querySelector('#container')
-    let shortcutCards = [...shortcutContainer.querySelectorAll('.shortcut-card')].map(card => card.cloneNode(true))
+    let shortcutCards = [...shortcutContainer.querySelectorAll('.shortcut-card')]
     let filterText = shortcutContainerRoot.getElementById('extensionSearch').value
     shortcutCards.forEach(e => filterCard(filterText, e))
-    shortcutContainer.replaceWith(createNewContainer(shortcutCards, filterText))
+    shortcutCards.sort((a, b) => compareEditDistance(a, b, filterText)).forEach(card => shortcutContainer.appendChild(card))
 }
 
 function createInput(): HTMLInputElement {
