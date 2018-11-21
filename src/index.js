@@ -4,7 +4,7 @@ const upperTrim = (str: string) => str.trim().toUpperCase()
 const uniqueChars = (source: string) => upperTrim(source).split('').filter((v, i, a) => a.indexOf(v) === i)
 const isSubset = (as: Object[], bs: Object[]) => as.every(a => bs.includes(a))
 const textMatches = (search: string, str: string) => isSubset(uniqueChars(search), uniqueChars(str))
-const highlightChars = (chars: string[], str: string) => str.split('').map(c => chars.some(char => c.toUpperCase() == char) ? newSpan() : c).join('')
+const highlightChars = (chars: string[], str: string) => str.split('').map(c => chars.some(char => c.toUpperCase() == char) ? newSpan(c) : c).join('')
 const getTitle = card => card.querySelector('.card-title > span')
 
 function filterCard(filterText: string, card: Object) {
