@@ -29,10 +29,16 @@ function newSpan(text: string): HTMLSpanElement {
     return span.outerHTML
 }
 
-function createNewContainer(shortcutCards: NodeListOf<Element>): HTMLDivElement {
+function compareEditDistance(a: Elemenet, b: Element, search: string): number {
+    let distanceA = getEditDistance(search, getTitle(a).innerText)
+    let distanceB = getEditDistance(search, getTitle(b).innerText)
+    return distanceA < distanceB ? -1 : (distanceA == distanceB ? 0 : 1)
+} 
+
+function createNewContainer(shortcutCards: NodeListOf<Element>, search: string): HTMLDivElement {
     let div = document.createElement('div')
     div.id = 'container'
-    shortcutCards.sort((a, b) => getEditDistance(getTitle(a).innerText, getTitle(b).innerText)).forEach(card => div.appendChild(card))
+    shortcutCards.sort((a, b) => compareEditDistance(a, b, search)).forEach(card => div.appendChild(card))
     
     return div
 }
@@ -44,7 +50,7 @@ function sortExtenionCards(): void {
     let shortcutCards = [...shortcutContainer.querySelectorAll('.shortcut-card')].map(card => card.cloneNode(true))
     let filterText = shortcutContainerRoot.getElementById('extensionSearch').value
     shortcutCards.forEach(e => filterCard(filterText, e))
-    shortcutContainer.replaceWith(createNewContainer(shortcutCards))
+    shortcutContainer.replaceWith(createNewContainer(shortcutCards, filterText))
 }
 
 function createInput(): HTMLInputElement {
