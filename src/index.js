@@ -1,13 +1,13 @@
 import getEditDistance from './LevenshteinDistance'
 
-const upperTrim = str => str.trim().toUpperCase()
-const uniqueChars = source => upperTrim(source).split('').filter((v, i, a) => a.indexOf(v) === i)
-const isSubset = (as, bs) => as.every(a => bs.includes(a))
-const textMatches = (search, str) => isSubset(uniqueChars(search), uniqueChars(str))
-const highlightChars = (chars, str) => str.split('').map(c => chars.some(char => c.toUpperCase() == char) ? newSpan(c) : c).join('')
+const upperTrim = (str: string) => str.trim().toUpperCase()
+const uniqueChars = (source: string) => upperTrim(source).split('').filter((v, i, a) => a.indexOf(v) === i)
+const isSubset = (as: Object[], bs: Object[]) => as.every(a => bs.includes(a))
+const textMatches = (search: string, str: string) => isSubset(uniqueChars(search), uniqueChars(str))
+const highlightChars = (chars: string[], str: string) => str.split('').map(c => chars.some(char => c.toUpperCase() == char) ? newSpan() : c).join('')
 const getTitle = card => card.querySelector('.card-title > span')
 
-function filterCard(filterText, card) {
+function filterCard(filterText: string, card: Object) {
     let cardTitle = getTitle(card)
     if (!filterText) {
         card.style.display = ''
@@ -20,7 +20,7 @@ function filterCard(filterText, card) {
     } 
 }
 
-function newSpan(text) {
+function newSpan(text: string): HTMLSpanElement {
     let span = document.createElement('span')
     span.style.color = 'red'
     span.style['font-size'] = 'large'
@@ -29,7 +29,7 @@ function newSpan(text) {
     return span.outerHTML
 }
 
-function createNewContainer(shortcutCards) {
+function createNewContainer(shortcutCards: NodeListOf<Element>): HTMLDivElement {
     let div = document.createElement('div')
     div.id = 'container'
     shortcutCards.sort((a, b) => getEditDistance(getTitle(a).innerText, getTitle(b).innerText)).forEach(card => div.appendChild(card))
@@ -37,7 +37,7 @@ function createNewContainer(shortcutCards) {
     return div
 }
 
-function sortExtenionCards() {
+function sortExtenionCards(): void {
     let extensionManagerContainer = document.getElementsByTagName('extensions-manager')[0].shadowRoot
     let shortcutContainerRoot = extensionManagerContainer.querySelector('extensions-keyboard-shortcuts').shadowRoot
     let shortcutContainer = shortcutContainerRoot.querySelector('#container')
@@ -47,7 +47,7 @@ function sortExtenionCards() {
     shortcutContainer.replaceWith(createNewContainer(shortcutCards))
 }
 
-function createInput() {
+function createInput(): HTMLInputElement {
     var input = document.createElement('input')
     input.setAttribute('type', 'search')
     input.type = 'search'

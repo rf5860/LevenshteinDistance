@@ -1,9 +1,9 @@
-const substitutionCost = (m, i, j) => m[j - 1][i - 1] + 1
-const insertionCost = (m, i, j) => m[j][i - 1] + 1
-const deletionCost = (m, i, j) => m[j - 1][i] + 1
+const substitutionCost = (m: number[][], i:number, j:number) => m[j - 1][i - 1] + 1
+const insertionCost = (m: number[][], i:number, j:number) => m[j][i - 1] + 1
+const deletionCost = (m: number[][], i:number, j:number) => m[j - 1][i] + 1
 const editCost = (m, i, j) => Math.min(substitutionCost(m, i, j), Math.min(insertionCost(m, i, j), deletionCost(m, i, j)))
 
-export default function getEditDistance(source, target) {
+export default function getEditDistance(source: string, target: string): number {
     if (source.length === 0) return target.length;
     if (target.length === 0) return source.length;
     
