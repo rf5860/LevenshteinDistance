@@ -69,3 +69,9 @@ The distance from `source[0, i]` to `target[0, j]` is held in `m[j, i]`
         └─┴─┘
 Distance from an Empty Source
 ```
+
+## Usage
+
+An example of using the function can be found in [index.js](./src/index.js). This can be run on the extensions page of Google Chrome, to provide fuzzy-searching of all currently installed extensions:
+
+![](./docs/chrome-extensions.png)
