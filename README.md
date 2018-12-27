@@ -4,7 +4,7 @@
 
 This repository is a Javascript implementation of the [Wagner-Fischer Algorithm](https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm) for computing [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance).
 
-This algorithm utiliz1es [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) to compute [edit distance](https://en.wikipedia.org/wiki/Edit_distance). It is based on the observation that a matrix of the edit distances can be flood-filled, with the distance between the two full strings being the last last value computed.
+This algorithm utilizes [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming) to compute [edit distance](https://en.wikipedia.org/wiki/Edit_distance). It is based on the observation that a matrix of the edit distances can be flood-filled, with the distance between the two full strings being the last last value computed.
 
 ## Example Matrices
 
